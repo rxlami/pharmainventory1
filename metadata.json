@@ -1,0 +1,6 @@
+{
+  "name": "Pharmacy Inventory Management System",
+  "description": "Production-ready pharmacy inventory, stock inflow/outflow, POS sales, cash & finance, expiry monitoring, and audit trails.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
