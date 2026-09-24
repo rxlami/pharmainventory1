@@ -166,7 +166,7 @@ interface PharmacyContextType {
 
 const PharmacyContext = createContext<PharmacyContextType | null>(null);
 
-const STORAGE_PREFIX = 'pharmapulse_ng_v3_';
+const STORAGE_PREFIX = 'pharmapulse_ng_v4_';
 
 function loadFromStorage<T>(key: string, fallback: T): T {
   try {
@@ -174,8 +174,11 @@ function loadFromStorage<T>(key: string, fallback: T): T {
     if (!item) return fallback;
     const parsed = JSON.parse(item);
     // If settings had the old USD symbol, fallback to new Nigerian settings
-    if (key === 'settings' && parsed && (parsed.currencySymbol === '$' || parsed.currencyCode === 'USD')) {
-      return fallback;
+    if (key === 'settings' && parsed) {
+      if (parsed.currencySymbol === '$' || parsed.currencyCode === 'USD' || !parsed.currencySymbol) {
+        parsed.currencySymbol = '₦';
+        parsed.currencyCode = 'NGN';
+      }
     }
     return parsed;
   } catch (e) {
@@ -1330,7 +1333,8 @@ export const PharmacyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const unreadNotificationsCount = generatedNotifications.filter((n) => !n.read).length;
 
   const formatCurrency = (amount: number | undefined | null, includeDecimals = true): string => {
-    const sym = settings.currencySymbol || '₦';
+    const rawSym = settings.currencySymbol || '₦';
+    const sym = rawSym === '$' ? '₦' : rawSym;
     if (amount === undefined || amount === null || isNaN(amount)) {
       return `${sym}0.00`;
     }

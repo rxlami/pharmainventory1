@@ -66,8 +66,6 @@ export const QuickActionModal: React.FC<QuickActionModalProps> = ({
 
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  if (isOpen === false) return null;
-
   // Inflow Form State
   const [inflowSupplierId, setInflowSupplierId] = useState(suppliers[0]?.id || '');
   const [inflowInvoice, setInflowInvoice] = useState(`INV-${Date.now().toString().slice(-5)}`);
@@ -108,6 +106,8 @@ export const QuickActionModal: React.FC<QuickActionModalProps> = ({
   const [adjType, setAdjType] = useState<'DAMAGE' | 'EXPIRY_DISPOSAL' | 'SUPPLIER_RETURN' | 'INVENTORY_ADJUSTMENT'>('DAMAGE');
   const [adjQty, setAdjQty] = useState(1);
   const [adjReason, setAdjReason] = useState('Damaged packaging / seal broken during handling');
+
+  if (isOpen === false) return null;
 
   // Auto-sync product pricing when selected in Inflow
   const handleInflowProductChange = (productId: string) => {

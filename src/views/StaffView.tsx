@@ -365,7 +365,7 @@ export const StaffView: React.FC = () => {
                   type="text"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
-                  placeholder="e.g. Pharm. (Dr.) Ngozi Eze, MPSN"
+                  placeholder="e.g. Pharm. Ifeanyi Olayemi Audu / Chioma Folashade Amina"
                   className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
                   required
                 />
@@ -377,7 +377,7 @@ export const StaffView: React.FC = () => {
                   type="email"
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
-                  placeholder="ngozi.eze@emabpharmacy.ng"
+                  placeholder="ifeanyi.audu@emabpharmacy.ng"
                   className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
                   required
                 />

@@ -11,7 +11,7 @@ import {
   Plus,
   Minus,
   Trash2,
-  DollarSign,
+  Banknote,
   CreditCard,
   Building2,
   ShieldCheck,
@@ -26,7 +26,9 @@ import {
   ArrowUpDown,
   ChevronUp,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react';
+import { generateMixedNigerianName } from '../utils/nigerianNames';
 
 interface CartItem {
   productId: string;
@@ -441,14 +443,34 @@ export const SalesPOSView: React.FC = () => {
               {/* Patient / Prescription Quick Input */}
               <div className="grid grid-cols-2 gap-2 pt-3 text-xs">
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-500 mb-0.5">
-                    Customer / Patient
-                  </label>
+                  <div className="flex items-center justify-between mb-0.5">
+                    <label className="block text-[10px] font-semibold text-slate-500">
+                      Customer / Patient
+                    </label>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setCustomerName(generateMixedNigerianName('male'))}
+                        className="text-[9px] px-1 py-0.5 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded border border-emerald-200 transition-colors font-medium"
+                        title="Generate Mixed Nigerian Male Name (e.g. Ifeanyi Olayemi Audu)"
+                      >
+                        + ♂ Male
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCustomerName(generateMixedNigerianName('female'))}
+                        className="text-[9px] px-1 py-0.5 text-violet-700 bg-violet-50 hover:bg-violet-100 rounded border border-violet-200 transition-colors font-medium"
+                        title="Generate Mixed Nigerian Female Name (e.g. Chioma Folashade Amina)"
+                      >
+                        + ♀ Female
+                      </button>
+                    </div>
+                  </div>
                   <input
                     type="text"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    placeholder="Patient Name"
+                    placeholder="e.g. Ifeanyi Olayemi Audu / Chioma Folashade Amina"
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg p-1.5 text-xs text-slate-800"
                   />
                 </div>
@@ -586,7 +608,7 @@ export const SalesPOSView: React.FC = () => {
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
-                    <DollarSign className="w-3.5 h-3.5" />
+                    <Banknote className="w-3.5 h-3.5" />
                     <span>Cash</span>
                   </button>
 

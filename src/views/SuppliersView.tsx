@@ -640,7 +640,7 @@ export const SuppliersView: React.FC<SuppliersViewProps> = ({ onOpenQuickAction 
                     type="text"
                     value={newSupplier.contactPerson}
                     onChange={(e) => setNewSupplier({ ...newSupplier, contactPerson: e.target.value })}
-                    placeholder="Account Representative"
+                    placeholder="e.g. Mr. Chidiebere Babatunde Usman / Mrs. Oluchi Omolara Zainab"
                     className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
                     required
                   />
