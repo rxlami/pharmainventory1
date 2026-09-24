@@ -20,7 +20,8 @@ export const INITIAL_SETTINGS: PharmacySettings = {
   address: '14 Allen Avenue, Ikeja',
   city: 'Ikeja, Lagos State',
   state: 'Lagos State, Nigeria',
-  phone: '+234 803 555 8920',
+  phone: '08012345678',
+  whatsappNumber: '08012345678',
   email: 'dispensary@emabpharmacy.ng',
   taxRate: 7.5,
   currencySymbol: '₦',
@@ -37,7 +38,7 @@ export const INITIAL_STAFF: StaffMember[] = [
     name: 'Pharm. (Dr.) Ifeanyi Olayemi Audu, PharmD, MPSN',
     role: 'OWNER_ADMIN',
     email: 'ifeanyi.olayemi.audu@emabpharmacy.ng',
-    phone: '+234 803 555 8921',
+    phone: '08012345678',
     licenseNumber: 'PCN/RPh/18492',
     shift: 'General Full-Time',
     status: 'ACTIVE',
@@ -48,7 +49,7 @@ export const INITIAL_STAFF: StaffMember[] = [
     name: 'Pharm. Chioma Folashade Amina, B.Pharm',
     role: 'PHARMACIST',
     email: 'chioma.folashade.amina@emabpharmacy.ng',
-    phone: '+234 802 334 7892',
+    phone: '08012345678',
     licenseNumber: 'PCN/RPh/24180',
     shift: 'Morning (08:00 - 16:00)',
     status: 'ACTIVE',
@@ -59,7 +60,7 @@ export const INITIAL_STAFF: StaffMember[] = [
     name: 'Chukwuemeka Adebayo Danjuma, CPhT',
     role: 'PHARMACY_TECHNICIAN',
     email: 'chukwuemeka.adebayo.danjuma@emabpharmacy.ng',
-    phone: '+234 805 123 4567',
+    phone: '08012345678',
     licenseNumber: 'NAPT-0842',
     shift: 'Morning (08:00 - 16:00)',
     status: 'ACTIVE',
@@ -70,7 +71,7 @@ export const INITIAL_STAFF: StaffMember[] = [
     name: 'Ngozi Titilayo Fatima',
     role: 'CASHIER',
     email: 'ngozi.titilayo.fatima@emabpharmacy.ng',
-    phone: '+234 818 987 6543',
+    phone: '08012345678',
     licenseNumber: 'CSH-104',
     shift: 'Morning (08:00 - 16:00)',
     status: 'ACTIVE',
@@ -1344,7 +1345,7 @@ export const INITIAL_SALES: Sale[] = [
     id: 'sale-1',
     receiptNumber: 'REC-2026-1088',
     customerName: 'Chief Tochukwu Adeyemi Yakubu',
-    customerPhone: '+234 802 345 6789',
+    customerPhone: '08012345678',
     prescriptionNumber: 'RX-9941',
     items: [
       {
@@ -1387,7 +1388,7 @@ export const INITIAL_SALES: Sale[] = [
     id: 'sale-2',
     receiptNumber: 'REC-2026-1089',
     customerName: 'Mrs. Chiamaka Abiola Halima',
-    customerPhone: '+234 803 778 9023',
+    customerPhone: '08012345678',
     prescriptionNumber: 'RX-8820',
     items: [
       {
@@ -1430,7 +1431,7 @@ export const INITIAL_SALES: Sale[] = [
     id: 'sale-3',
     receiptNumber: 'REC-2026-1090',
     customerName: 'Engr. Kelechi Oladipo Mustapha',
-    customerPhone: '+234 805 431 2299',
+    customerPhone: '08012345678',
     items: [
       {
         productId: 'prod-3',

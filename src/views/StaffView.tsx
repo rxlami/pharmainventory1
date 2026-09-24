@@ -389,8 +389,8 @@ export const StaffView: React.FC = () => {
                   type="text"
                   value={newPhone}
                   onChange={(e) => setNewPhone(e.target.value)}
-                  placeholder="+234 803 123 4567"
-                  className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
+                  placeholder="08012345678"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-mono text-sm"
                 />
               </div>
 

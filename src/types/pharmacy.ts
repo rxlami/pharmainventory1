@@ -265,6 +265,7 @@ export interface PharmacySettings {
   city: string;
   state?: string;
   phone: string;
+  whatsappNumber?: string;
   email: string;
   taxRate: number; // e.g. 7.5 for 7.5% VAT
   currencySymbol: string; // "₦"

@@ -440,8 +440,8 @@ export const SalesPOSView: React.FC = () => {
                 </span>
               </div>
 
-              {/* Patient / Prescription Quick Input */}
-              <div className="grid grid-cols-2 gap-2 pt-3 text-xs">
+              {/* Patient / Prescription / WhatsApp Quick Input */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 text-xs">
                 <div>
                   <div className="flex items-center justify-between mb-0.5">
                     <label className="block text-[10px] font-semibold text-slate-500">
@@ -475,6 +475,28 @@ export const SalesPOSView: React.FC = () => {
                   />
                 </div>
                 <div>
+                  <div className="flex items-center justify-between mb-0.5">
+                    <label className="block text-[10px] font-semibold text-slate-500">
+                      WhatsApp / Phone
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setCustomerPhone('08012345678')}
+                      className="text-[9px] px-1.5 py-0.5 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded border border-emerald-200 font-mono transition-colors font-medium"
+                      title="Use 08012345678"
+                    >
+                      08012345678
+                    </button>
+                  </div>
+                  <input
+                    type="tel"
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
+                    placeholder="08012345678"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-1.5 text-xs text-slate-800 font-mono"
+                  />
+                </div>
+                <div className="sm:col-span-2">
                   <label className="block text-[10px] font-semibold text-slate-500 mb-0.5">
                     Prescription # (Rx)
                   </label>
@@ -482,7 +504,7 @@ export const SalesPOSView: React.FC = () => {
                     type="text"
                     value={prescriptionNumber}
                     onChange={(e) => setPrescriptionNumber(e.target.value)}
-                    placeholder="e.g. RX-4981"
+                    placeholder="e.g. RX-4981 (Optional for OTC)"
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg p-1.5 text-xs text-slate-800 font-mono"
                   />
                 </div>

@@ -116,15 +116,29 @@ export const SettingsView: React.FC = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-slate-700 font-semibold mb-1">Primary Phone</label>
-              <input
-                type="text"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
-                required
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">Primary Phone / Helpline</label>
+                <input
+                  type="text"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="08012345678"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-mono text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">WhatsApp Order & Inquiry Number</label>
+                <input
+                  type="text"
+                  value={formData.whatsappNumber ?? formData.phone}
+                  onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                  placeholder="08012345678"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-mono text-sm"
+                  required
+                />
+              </div>
             </div>
 
             <div>

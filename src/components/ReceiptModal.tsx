@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Sale, PharmacySettings } from '../types/pharmacy';
-import { Printer, X, CheckCircle2, ShieldCheck, Phone, MapPin, Receipt, Share2 } from 'lucide-react';
+import { Printer, X, CheckCircle2, ShieldCheck, Phone, MapPin, Receipt, Share2, MessageCircle } from 'lucide-react';
 import { formatCurrency } from '../utils/formatters';
 
 interface ReceiptModalProps {
@@ -19,6 +19,23 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ sale, settings, onCl
   };
 
   const fmt = (amount: number) => formatCurrency(amount, settings.currencySymbol || '₦');
+
+  const whatsappNumber = settings.whatsappNumber || settings.phone || '08012345678';
+  const cleanPhone = (sale.customerPhone || whatsappNumber).replace(/\D/g, '');
+  const internationalPhone = cleanPhone.startsWith('0') ? '234' + cleanPhone.slice(1) : cleanPhone;
+  const itemsText = sale.items.map((it) => `• ${it.productName} (x${it.quantity}) - ₦${(it.total || 0).toLocaleString()}`).join('\n');
+  const receiptMessage = encodeURIComponent(
+    `*${settings.pharmacyName}*\n` +
+      `*Receipt #:* ${sale.receiptNumber}\n` +
+      `*Date:* ${sale.timestamp}\n` +
+      `*Customer:* ${sale.customerName || 'Walk-in'}\n\n` +
+      `*Dispensed Items:*\n${itemsText}\n\n` +
+      `*Total Paid:* ₦${(sale.grandTotal || 0).toLocaleString()} (${sale.paymentMethod})\n\n` +
+      `*Dispensary Tel:* ${settings.phone || '08012345678'}\n` +
+      `*WhatsApp:* ${whatsappNumber}\n` +
+      `_Thank you for trusting us with your health._`
+  );
+  const whatsappUrl = `https://wa.me/${internationalPhone}?text=${receiptMessage}`;
 
   return (
     <div
@@ -70,9 +87,16 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ sale, settings, onCl
               <MapPin className="w-3 h-3 text-emerald-600" />
               <span>{settings.address}, {settings.city}</span>
             </div>
-            <div className="flex items-center justify-center gap-1 text-xs text-slate-500">
-              <Phone className="w-3 h-3 text-emerald-600" />
-              <span>{settings.phone}</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-xs text-slate-600 mt-1 font-mono">
+              <div className="flex items-center gap-1">
+                <Phone className="w-3 h-3 text-emerald-600" />
+                <span>Tel: {settings.phone || '08012345678'}</span>
+              </div>
+              <span className="text-slate-300">•</span>
+              <div className="flex items-center gap-1">
+                <MessageCircle className="w-3 h-3 text-emerald-600" />
+                <span>WhatsApp: {whatsappNumber}</span>
+              </div>
             </div>
             <div className="mt-1.5 text-[10px] font-mono text-emerald-900 bg-emerald-50 py-1 px-2.5 rounded-md inline-block border border-emerald-200/60 leading-relaxed">
               <div>Premises: {settings.pcnPremisesNumber || settings.licenseNumber}</div>
@@ -187,19 +211,30 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ sale, settings, onCl
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
             Transaction Completed
           </span>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
+            <a
+              id="receipt-whatsapp-btn"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-medium shadow-xs transition-colors flex items-center gap-1.5"
+              title={`Send via WhatsApp (${whatsappNumber})`}
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp Receipt</span>
+            </a>
             <button
               id="receipt-print-bottom-btn"
               onClick={handlePrint}
-              className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-medium shadow-xs transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-medium shadow-xs transition-colors flex items-center gap-1.5"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print Receipt</span>
+              <span>Print</span>
             </button>
             <button
               id="receipt-done-btn"
               onClick={onClose}
-              className="px-4 py-1.5 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium transition-colors"
+              className="px-3.5 py-1.5 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium transition-colors"
             >
               Close
             </button>

@@ -166,7 +166,7 @@ interface PharmacyContextType {
 
 const PharmacyContext = createContext<PharmacyContextType | null>(null);
 
-const STORAGE_PREFIX = 'pharmapulse_ng_v4_';
+const STORAGE_PREFIX = 'pharmapulse_ng_v5_';
 
 function loadFromStorage<T>(key: string, fallback: T): T {
   try {
@@ -178,6 +178,12 @@ function loadFromStorage<T>(key: string, fallback: T): T {
       if (parsed.currencySymbol === '$' || parsed.currencyCode === 'USD' || !parsed.currencySymbol) {
         parsed.currencySymbol = '₦';
         parsed.currencyCode = 'NGN';
+      }
+      if (!parsed.phone || parsed.phone.includes('555 8920')) {
+        parsed.phone = '08012345678';
+      }
+      if (!parsed.whatsappNumber) {
+        parsed.whatsappNumber = '08012345678';
       }
     }
     return parsed;

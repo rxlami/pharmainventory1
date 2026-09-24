@@ -652,8 +652,8 @@ export const SuppliersView: React.FC<SuppliersViewProps> = ({ onOpenQuickAction 
                     type="text"
                     value={newSupplier.phone}
                     onChange={(e) => setNewSupplier({ ...newSupplier, phone: e.target.value })}
-                    placeholder="+234 802 345 6789"
-                    className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2"
+                    placeholder="08012345678"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-mono text-sm"
                     required
                   />
                 </div>
